@@ -1,0 +1,37 @@
+const uploadForm = document.getElementById("upload-form");
+const photoInput = document.getElementById("photo-input");
+const uploadStatus = document.getElementById("upload-status");
+const photosContainer = document.getElementById("photos");
+
+// Handle photo upload
+uploadForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("photo", photoInput.files[0]);
+
+  try {
+    const response = await fetch("/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      uploadStatus.textContent = "Photo uploaded successfully!";
+      displayPhoto(data.filePath);
+    } else {
+      uploadStatus.textContent = "Failed to upload photo.";
+    }
+  } catch (error) {
+    console.error("Error uploading photo:", error);
+    uploadStatus.textContent = "An error occurred.";
+  }
+});
+
+// Display uploaded photo
+function displayPhoto(filePath) {
+  const photoDiv = document.createElement("div");
+  photoDiv.classList.add("photo");
+  photoDiv.innerHTML = `<img src="${filePath}" alt="Uploaded Photo">`;
+  photosContainer.appendChild(photoDiv);
+}
