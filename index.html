@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Album</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>My Photo Album</h1>
+    <p>Upload and view your favorite photos in one place.</p>
+  </header>
+  <main>
+    <section id="upload-section">
+      <form id="upload-form">
+        <input type="file" id="photo-input" name="photo" accept="image/*" required>
+        <button type="submit">Upload Photo</button>
+      </form>
+      <p id="upload-status"></p>
+    </section>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div id="photos"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Photo Album</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
